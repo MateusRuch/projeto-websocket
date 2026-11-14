@@ -1,0 +1,17 @@
+{
+  "name": "chat-websocket",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chat público em tempo real com WebSocket, Node.js e ws.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "ws": "^8.23.0"
+  }
+}

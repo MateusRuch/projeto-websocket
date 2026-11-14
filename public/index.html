@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Chat público em tempo real utilizando WebSocket e broadcast." />
+    <title>Chat em Tempo Real — WebSocket</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">WS</span>
+          <div>
+            <h1>Chat em Tempo Real</h1>
+            <p class="subtitle">WebSocket · broadcast para todos os clientes</p>
+          </div>
+        </div>
+        <div class="status" id="status" data-state="offline" role="status" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="statusText">Desconectado</span>
+        </div>
+      </header>
+
+      <section class="join-panel" id="joinPanel">
+        <form class="join-form" id="joinForm">
+          <div class="join-icon" aria-hidden="true">#</div>
+          <h2>Entre na sala</h2>
+          <p>Escolha um nome para participar do chat público.</p>
+
+          <label for="nameInput">Seu nome</label>
+          <div class="join-row">
+            <input
+              id="nameInput"
+              name="name"
+              type="text"
+              maxlength="40"
+              placeholder="Ex.: Ana"
+              autocomplete="nickname"
+              required
+              autofocus
+            />
+            <button type="submit">Entrar</button>
+          </div>
+
+          <p class="error" id="joinError" role="alert" hidden></p>
+          <p class="hint">Abra outra aba ou uma janela anônima para simular um segundo cliente.</p>
+        </form>
+      </section>
+
+      <section class="chat-panel" id="chatPanel" hidden>
+        <div class="chat-meta">
+          <span>Conectado como <strong id="currentName"></strong></span>
+          <span id="clientCount">0 pessoas online</span>
+        </div>
+
+        <ol class="messages" id="messageList" aria-live="polite" aria-relevant="additions"></ol>
+
+        <form class="composer" id="messageForm">
+          <label class="sr-only" for="messageInput">Mensagem</label>
+          <input
+            id="messageInput"
+            type="text"
+            maxlength="500"
+            placeholder="Digite uma mensagem..."
+            autocomplete="off"
+            disabled
+          />
+          <button type="submit" id="sendButton" disabled>Enviar</button>
+        </form>
+      </section>
+    </main>
+
+    <div class="banner" id="banner" role="status" aria-live="polite" hidden>
+      <span id="bannerText"></span>
+      <button type="button" id="reconnectButton" hidden>Reconectar</button>
+    </div>
+
+    <script src="/client.js" defer></script>
+  </body>
+</html>
